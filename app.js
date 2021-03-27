@@ -8,14 +8,12 @@ const app = express();
 
 
 app.get('/', (req, res) => {
-    db.execute('SELECT 2 + 2;')
-        .then(result => {
-            res.end(result)
-        })
-        .catch(err => {
+    db.execute('SELECT 2 + 2;', (err, result) => {
+        if(err) {
             console.log(err)
-        })
-    // res.end('hi')
+        }
+        res.json(result[0])
+    })
 })
 
 
