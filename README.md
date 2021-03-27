@@ -6,6 +6,7 @@ built using nodejs, express and mysql.
 ## installation:
 
 for running this project you must have **Node JS** installed on your computer.
+also mysql must be running in computer.
 
 
 
@@ -18,6 +19,16 @@ then go to chatbook folder and install npm packages:
 ```bash
     cd chatbook
     npm install
+```
+
+and edit config.js file based on your database configuration:
+```js
+    module.exports = {
+        host: 'localhost',
+        user: <database_user>,
+        password: <database_password>.
+        database: 'chatbook'
+    };
 ```
 
 for running run this:
