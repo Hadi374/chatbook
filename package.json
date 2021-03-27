@@ -4,7 +4,7 @@
   "description": "chatbook (social media) app for database homework.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
