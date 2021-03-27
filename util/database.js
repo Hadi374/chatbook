@@ -1,9 +1,10 @@
 const mysql = require('mysql2')
-const config = require('../config.js')
+const dotenv = require('dotenv')
+dotenv.config()
 
 module.exports = mysql.createPool({
-    host: config.host,
-    user: config.user,
-    password: config.password,
-    database: config.database
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE
 })

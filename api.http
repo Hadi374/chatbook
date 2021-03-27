@@ -2,8 +2,57 @@
 
 GET http://localhost:3000/ HTTP/1.1
 
+### signup
+
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=test
+&password=123
+&password_verify=123
+&email=test@gmail.com
+
+### signup another user
+
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=another
+&password=1234
+&password_verify=1234
+&email=another@gmail.com
+
+### signup another user incorrect password
+
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=another2
+&password=123
+&password_verify=1234
+&email=another@gmail.com
+
+
+### login
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=test
+&password=123
+
+### login incorrect password
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+username=test
+&password=1234
+
+
 
 ### template
 
 GET http://localhost:3000/ HTTP/1.1
+
 

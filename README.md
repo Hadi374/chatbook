@@ -36,10 +36,12 @@ for running run this:
     npm start
 ```
 
-and the server will run in [Local Host](localhost:3000) port 3000.
+and the server will run in [LocalHost](localhost:3000) port 3000.
 
 
 
 ## Testing: 
 
-for testing you can use REST Client (humao.rest-client) in vscode and click on top (Send Request) of any link of **api.http** file. or send those requests from another applications like postman.
+for testing you can use REST Client Extension (humao.rest-client) in vscode.
+
+and click on top (Send Request) of any link of **api.http** file. or send those requests from another applications like postman.
