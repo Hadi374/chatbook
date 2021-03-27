@@ -4,7 +4,11 @@ const dotenv = require('dotenv')
 
 const db = require('./util/database')
 const auth = require('./util/auth')
+const authMiddleware = require('./middlewares/auth')
+const allRoutes = require('./routes/index')
 
+const userController = require('./controllers/user')
+console.log(userController.login, userController.signup)
 
 dotenv.config()
 
@@ -12,29 +16,44 @@ dotenv.config()
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}))
 
-// add all routes here.
+
+
+
+app.use('/api/v1', authMiddleware.authenticateToken, allRoutes);
 
 
 app.get('/', (req, res) => {
-    db.execute('SELECT 2 + 2;', (err, result) => {
-        if(err) {
-            console.log(err)
-        }
-        res.json(result[0])
+    res.end("welcome")
+})
+
+app.post('/login', (req, res) => {
+    const { email, password } = req.body
+    userController.login(email, password).then(result => {
+        res.json(result)
+    })
+    .catch(err => {
+        res.json(err)
     })
 })
 
+
 app.post('/signup', (req, res) => {
-    console.log(req.body)
-    const {username, password, password_verify, email } = req.body;
-    console.log(username, password, password_verify, email)
-    console.log(auth.hashPassword(password));
+    const {first_name, last_name, password, password_verify, email } = req.body;
+    userController.signup(first_name, last_name, password, password_verify, email)
+    .then(user => {
+        res.json(user)
+    })
+    .catch(err => {
+        res.json(err)
+    })
+  
 })
 
+app.post('/logout', (req, res) => {
+    // TODO: clear cookies and disable the user's authorization header.
+    res.end("logged out successfully")
 
-
-
-
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

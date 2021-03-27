@@ -7,7 +7,8 @@ GET http://localhost:3000/ HTTP/1.1
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-username=test
+first_name=test
+&last_name=last_test
 &password=123
 &password_verify=123
 &email=test@gmail.com
@@ -17,7 +18,8 @@ username=test
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-username=another
+first_name=another
+&last_name=last_another
 &password=1234
 &password_verify=1234
 &email=another@gmail.com
@@ -27,9 +29,20 @@ username=another
 POST http://localhost:3000/signup HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-username=another2
+first_name=another2
+&last_name=another2_last
 &password=123
 &password_verify=1234
+&email=another@gmail.com
+
+### signup incomplete post body
+
+POST http://localhost:3000/signup HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+first_name=another3
+&last_name=another3_last
+&password=123
 &email=another@gmail.com
 
 
@@ -38,7 +51,7 @@ username=another2
 POST http://localhost:3000/login HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-username=test
+email=test@gmail.com
 &password=123
 
 ### login incorrect password
@@ -46,13 +59,29 @@ username=test
 POST http://localhost:3000/login HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-username=test
+email=test@gmail.com
 &password=1234
+
+
+### login another user
+
+POST http://localhost:3000/login HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=another@gmail.com
+&password=1234
+
 
 
 
 ### template
 
-GET http://localhost:3000/ HTTP/1.1
+GET http://localhost:3000/api/v1/ HTTP/1.1
 
 
+
+### change Authorization header to token that returns from login
+
+GET http://localhost:3000/api/v1/ HTTP/1.1
+Authorization: Bearer 
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2ODc3Mjc4LCJleHAiOjE2MTY4NzkwNzh9.2Odzqy16jaVBTT-Wx5AdORbbS20kE8Zle4sVGHbhd3U
