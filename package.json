@@ -1,0 +1,26 @@
+{
+  "name": "chatbook",
+  "version": "0.0.1",
+  "description": "chatbook (social media) app for database homework.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hadi374/chatbook.git"
+  },
+  "keywords": [
+    "chat",
+    "social_media",
+    "nodejs",
+    "express",
+    "mysql"
+  ],
+  "author": "Hadi Ahmadi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hadi374/chatbook/issues"
+  },
+  "homepage": "https://github.com/Hadi374/chatbook#readme"
+}
