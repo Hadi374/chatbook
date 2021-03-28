@@ -1,4 +1,4 @@
-
+const userController = require('../controllers/user')
 const jwt = require('jsonwebtoken');
 
 // use this middleware in routes that need authentication.

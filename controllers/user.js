@@ -1,8 +1,11 @@
 const db = require('../util/database')
 const auth = require('../util/auth')
 
+// This will have password. which is used for login.
 const getUserByEmail = (email) => {
+
     return new Promise((resolve, reject) => {
+        console.log(email)
         db.execute('SELECT * FROM users WHERE email=?;', [email], (err, result) => {
             if(err) {
                 reject(err)
@@ -11,6 +14,35 @@ const getUserByEmail = (email) => {
         })
     })
 }
+
+const getUserById = (id) => {
+    return new Promise((resolve, reject) => {
+        console.log(id)
+        db.execute('SELECT \
+        id, first_name, last_name, profile_image \
+        FROM users WHERE id=?;', [id], (err, result) => {
+            if(err) {
+                reject(err)
+            }
+            resolve(result[0])
+        })
+    })
+}
+
+
+const getFullUserById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.execute('SELECT \
+        id, first_name, last_name, bio, gender, year_of_birth, phone, profile_image, cover_image, createdAt  \
+        FROM users WHERE id=?;', [id], (err, result) => {
+            if(err) {
+                reject(err)
+            }
+            resolve(result[0])
+        })
+    })
+}
+
 
 const login = (email, password) => {
     console.log(email, password)
@@ -22,12 +54,15 @@ const login = (email, password) => {
         getUserByEmail(email)
         .then(user => {
             if(user) {
+            
+                console.log(user.password, hashedPassword)
                 if(user.password === hashedPassword) {
                     // successuflly logged in.
                     // send authentication token.
+                    const {password, ...rest} = user
                     resolve({
-                        user: user,
-                        token: auth.generateAccessToken(email)
+                        user: rest,
+                        token: auth.generateAccessToken(user)
                     })
                 } else {
                     reject("Invalid password.")
@@ -76,7 +111,7 @@ const signup = (first_name, last_name, password, password_verify, email) => {
     })
 }
     
-const editProfile = (email, newValues) => {
+const editProfile = (user, newValues) => {
     return new Promise((resolve, reject) => {
 
         
@@ -90,17 +125,16 @@ const editProfile = (email, newValues) => {
         // before this line a comma in in sqlCommand
         sqlCommand += 'updatedAt=NOW() '
         
-        sqlCommand += `WHERE email=?`;
-        attributesArray.push(email)
+        sqlCommand += `WHERE id=?`;
+        attributesArray.push(user.id)
         
-        
-        console.log("Executing", sqlCommand)
         db.execute(sqlCommand, attributesArray, (err, result) => {
             if(err) {
                 reject(err)
             }
+            console.log(result)
             //  return the edited user.
-            getUserByEmail(email)
+            getFullUserById(user.id)
             .then(user => {
                 resolve(user)
             }).
@@ -113,5 +147,6 @@ module.exports = {
     login,
     signup,
     getUserByEmail,
+    getUserById,
     editProfile
 }
