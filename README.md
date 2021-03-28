@@ -37,4 +37,4 @@ and the server will run in [LocalHost](localhost:3000) port 3000.
 
 for testing you can use REST Client Extension (humao.rest-client) in vscode.
 
-and click on top (Send Request) of any link of **api.http** file. or send those requests from another applications like postman.
+and click on top (Send Request) of any link of **api.http** file. or send those requests from another applications like postman or curl.
