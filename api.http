@@ -1,111 +1,67 @@
+
+
+# set correct authorization header after login.
+@host = http://localhost:3000
+@contentType = application/x-www-form-urlencoded
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDMsImZpcnN0X25hbWUiOiJOZXcgTmFtZSAzIiwibGFzdF9uYW1lIjoiMTIzIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE2MTY5NTQzODksImV4cCI6MTYxNjk1NjE4OX0.EeaoFa3TeCIfp70X15TSWp7pcpxWJZF8VxRuocfuc30
+
+
 ### test connection
 
-GET http://localhost:3000/ HTTP/1.1
+GET  {{host}}/ 
 
 ### signup
 
-POST http://localhost:3000/signup HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
+POST {{host}}/signup
+Content-Type: {{contentType}}
 
 first_name=test
-&last_name=last_test
+&last_name=la_test
 &password=123
 &password_verify=123
-&email=test@gmail.com
+&email=test3@gmail.com
 
-### signup another user
+### login 
 
-POST http://localhost:3000/signup HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-first_name=another
-&last_name=last_another
-&password=1234
-&password_verify=1234
-&email=another@gmail.com
-
-### signup another user incorrect password
-
-POST http://localhost:3000/signup HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-first_name=another2
-&last_name=another2_last
-&password=123
-&password_verify=1234
-&email=another@gmail.com
-
-### signup incomplete post body
-
-POST http://localhost:3000/signup HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-first_name=another3
-&last_name=another3_last
-&password=123
-&email=another@gmail.com
-
-
-### login
-
-POST http://localhost:3000/login HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-email=test@gmail.com
-&password=123
-
-### login incorrect password
-
-POST http://localhost:3000/login HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
-
-email=test2@gmail.com
-&password=123
-
-
-### login another user
-
-POST http://localhost:3000/login HTTP/1.1
-Content-Type: application/x-www-form-urlencoded
+POST {{host}}/login
+Content-Type: {{contentType}}
 
 email=another@gmail.com
 &password=1234
 
+###
+
+POST {{host}}/api/v1/posts 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDYsImZpcnN0X25hbWUiOiJhbm90aGVyMiIsImxhc3RfbmFtZSI6ImFub3RoZXIyX2xhc3QiLCJlbWFpbCI6ImFub3RoZTJyQGdtYWlsLmNvbSIsImlhdCI6MTYxNjk1MTkzMCwiZXhwIjoxNjE2OTUzNzMwfQ.i0f8rI-_Oa3R1h-8Zt-fZfYLXENv7ESwT0NXGQ7dYUQ
+Content-Type: application/x-www-form-urlencoded
+
+content=Hello This is another Post.
 
 
+### Test 
 
-### template
-
-GET http://localhost:3000/api/v1/ HTTP/1.1
-
-
-
-### change Authorization header to token that returns from login
-
-GET http://localhost:3000/api/v1/ HTTP/1.1
-Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTYxNjg3ODQ2NiwiZXhwIjoxNjE2ODgwMjY2fQ.ElWB42-u-adygTONPFGA7jsoPffWTVpzMrbZQARkEqg
+GET {{host}}/api/v1/
+Authorization: Basic {{authToken}}
 ### returns information about logged in user
 
-GET http://localhost:3000/api/v1/users/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2OTE1OTUzLCJleHAiOjE2MTY5MTc3NTN9.ZF1TQkOX-kk9wK0d7ktiiJ3XapML5CP7O-qE-mDlMN4
-
+GET {{host}}/api/v1/users/me
+Authorization: Bearer {{authToken}}
 
 
 ### edit profile info of logged in user
 
-POST http://localhost:3000/api/v1/users/me HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTYxNjkxNzkyNywiZXhwIjoxNjE2OTE5NzI3fQ.DOWg1fgXbWfvDFuYZ1CawzAPvAODp1u0itakVk-GPRU
-Content-Type: application/x-www-form-urlencoded
+POST {{host}}/api/v1/users/me
+Authorization: Bearer {{authToken}}
+Content-Type: {{contentType}}
 
-first_name=New Name
-&last_name=123
-&bio=this is bio
-&gender=
-&year_of_birth=
-&phone=
-# file
-&profile_image= 
+first_name=Hadi
+&last_name=Ahmadi
+&bio=this is my bio
+&gender=Male
+&email=ahmadihadi374@gmail.com
+&year_of_birth=2002
+&phone=0787771034
+
 #file
+&profile_image= 
 &cover_image=
-
-
