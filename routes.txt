@@ -1,0 +1,13 @@
+-----
+
+ChatBook App:
+
+api: 
+/user
+/comment
+/like
+/post
+/signup
+/logout
+
+

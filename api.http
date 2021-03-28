@@ -59,8 +59,8 @@ email=test@gmail.com
 POST http://localhost:3000/login HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 
-email=test@gmail.com
-&password=1234
+email=test2@gmail.com
+&password=123
 
 
 ### login another user
@@ -83,5 +83,28 @@ GET http://localhost:3000/api/v1/ HTTP/1.1
 ### change Authorization header to token that returns from login
 
 GET http://localhost:3000/api/v1/ HTTP/1.1
-Authorization: Bearer 
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTYxNjg3ODQ2NiwiZXhwIjoxNjE2ODgwMjY2fQ.ElWB42-u-adygTONPFGA7jsoPffWTVpzMrbZQARkEqg
+### returns information about logged in user
+
+GET http://localhost:3000/api/v1/users/me HTTP/1.1
 Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2ODc3Mjc4LCJleHAiOjE2MTY4NzkwNzh9.2Odzqy16jaVBTT-Wx5AdORbbS20kE8Zle4sVGHbhd3U
+
+
+### edit profile info of logged in user
+
+POST http://localhost:3000/api/v1/users/me HTTP/1.1
+Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2ODc3Mjc4LCJleHAiOjE2MTY4NzkwNzh9.2Odzqy16jaVBTT-Wx5AdORbbS20kE8Zle4sVGHbhd3U
+
+first_name=
+&last_name=
+&bio=
+&gender=
+&year_of_birth=
+&phone=
+
+# file
+&profile_image= 
+#file
+&cover_image=
+
+

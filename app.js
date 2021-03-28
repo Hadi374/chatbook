@@ -2,13 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv')
 
-const db = require('./util/database')
-const auth = require('./util/auth')
 const authMiddleware = require('./middlewares/auth')
 const allRoutes = require('./routes/index')
 
 const userController = require('./controllers/user')
-console.log(userController.login, userController.signup)
 
 dotenv.config()
 
@@ -28,7 +25,8 @@ app.get('/', (req, res) => {
 
 app.post('/login', (req, res) => {
     const { email, password } = req.body
-    userController.login(email, password).then(result => {
+    userController.login(email, password)
+    .then(result => {
         res.json(result)
     })
     .catch(err => {

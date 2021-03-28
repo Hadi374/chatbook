@@ -21,17 +21,10 @@ then go to chatbook folder and install npm packages:
     npm install
 ```
 
-and edit config.js file based on your database configuration:
-```js
-    module.exports = {
-        host: 'localhost',
-        user: <database_user>,
-        password: <database_password>.
-        database: 'chatbook'
-    };
-```
+and edit .env file based on your configuration.
 
-for running run this:
+
+for running the server: run this command:
 ```bash
     npm start
 ```

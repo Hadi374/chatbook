@@ -29,9 +29,12 @@ const login = (email, password) => {
                         user: user,
                         token: auth.generateAccessToken(email)
                     })
+                } else {
+                    reject("Invalid password.")
                 }
+            } else {
+                reject("Cannot login");
             }
-            reject("Cannot login");
         })
         .catch(err => {
             console.log(err)
@@ -45,11 +48,11 @@ const signup = (first_name, last_name, password, password_verify, email) => {
     return new Promise((resolve, reject) => {
 
         if(!first_name || !last_name || !password || !password_verify || !email) {
-            return res.status(400).end("Please fill all fields")
+            return reject("Please fill all fields")
         }
         
         if(password !== password_verify) {
-            return res.status(400).end("passwords does not match")
+            return reject("passwords does not match")
         }
         const hashedPassword = auth.hashPassword(password)
         
@@ -58,7 +61,7 @@ const signup = (first_name, last_name, password, password_verify, email) => {
             
             if(err) {
                 if(err.code === 'ER_DUP_ENTRY') {
-                    return res.end("You have account with this email address, try login.")
+                    reject("You have account with this email address, try login.")
                 }
                 console.log(err)
             }
