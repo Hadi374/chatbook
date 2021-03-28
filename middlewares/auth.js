@@ -10,7 +10,11 @@ function authenticateToken(req, res, next) {
 
   jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
     if(err) {
-        res.json(err)
+      if(err.message === "jwt expired") {
+        // TODO: redirect to login page
+        return res.status(401).end("You must login first.")
+      }
+      return res.json({success: false, error: err})
     }
     
     if (err) return res.status(403).end("Unauthorized, please login or create new Account.")

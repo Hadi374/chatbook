@@ -87,21 +87,22 @@ Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQG
 ### returns information about logged in user
 
 GET http://localhost:3000/api/v1/users/me HTTP/1.1
-Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2ODc3Mjc4LCJleHAiOjE2MTY4NzkwNzh9.2Odzqy16jaVBTT-Wx5AdORbbS20kE8Zle4sVGHbhd3U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2OTE1OTUzLCJleHAiOjE2MTY5MTc3NTN9.ZF1TQkOX-kk9wK0d7ktiiJ3XapML5CP7O-qE-mDlMN4
+
 
 
 ### edit profile info of logged in user
 
 POST http://localhost:3000/api/v1/users/me HTTP/1.1
-Authorization: Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFub3RoZXJAZ21haWwuY29tIiwiaWF0IjoxNjE2ODc3Mjc4LCJleHAiOjE2MTY4NzkwNzh9.2Odzqy16jaVBTT-Wx5AdORbbS20kE8Zle4sVGHbhd3U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGdtYWlsLmNvbSIsImlhdCI6MTYxNjkxNzkyNywiZXhwIjoxNjE2OTE5NzI3fQ.DOWg1fgXbWfvDFuYZ1CawzAPvAODp1u0itakVk-GPRU
+Content-Type: application/x-www-form-urlencoded
 
-first_name=
-&last_name=
-&bio=
+first_name=New Name
+&last_name=123
+&bio=this is bio
 &gender=
 &year_of_birth=
 &phone=
-
 # file
 &profile_image= 
 #file

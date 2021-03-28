@@ -76,8 +76,42 @@ const signup = (first_name, last_name, password, password_verify, email) => {
     })
 }
     
+const editProfile = (email, newValues) => {
+    return new Promise((resolve, reject) => {
+
+        
+        let sqlCommand = "UPDATE users SET " 
+        let attributesArray = []
+        
+        for(attr in newValues) {
+            sqlCommand += attr + " =?,\n";
+            attributesArray.push(newValues[attr])
+        }
+        // before this line a comma in in sqlCommand
+        sqlCommand += 'updatedAt=NOW() '
+        
+        sqlCommand += `WHERE email=?`;
+        attributesArray.push(email)
+        
+        
+        console.log("Executing", sqlCommand)
+        db.execute(sqlCommand, attributesArray, (err, result) => {
+            if(err) {
+                reject(err)
+            }
+            //  return the edited user.
+            getUserByEmail(email)
+            .then(user => {
+                resolve(user)
+            }).
+            catch(err => reject(err)) 
+        })
+    })
+}
+
 module.exports = {
     login,
     signup,
-    getUserByEmail
+    getUserByEmail,
+    editProfile
 }
