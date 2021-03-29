@@ -34,7 +34,7 @@ router.get("/users/me", (req, res) => {
 
 
 router.post('/users/me', (req, res) => {
-    const { first_name, last_name, bio,  gender, year_of_birth, phone, profile_image, cover_image } = req.body
+    const { first_name, last_name, bio, email, gender, year_of_birth, phone, profile_image, cover_image } = req.body
 
     const updatedAttributes = {}
 
@@ -45,6 +45,9 @@ router.post('/users/me', (req, res) => {
     }
     if(last_name) {
         updatedAttributes["last_name"] = last_name
+    }
+    if(email) {
+        updatedAttributes["email"] = email
     }
     if(bio) {
         updatedAttributes["bio"] = bio

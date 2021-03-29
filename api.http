@@ -3,7 +3,7 @@
 # set correct authorization header after login.
 @host = http://localhost:3000
 @contentType = application/x-www-form-urlencoded
-@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDMsImZpcnN0X25hbWUiOiJOZXcgTmFtZSAzIiwibGFzdF9uYW1lIjoiMTIzIiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE2MTY5NTQzODksImV4cCI6MTYxNjk1NjE4OX0.EeaoFa3TeCIfp70X15TSWp7pcpxWJZF8VxRuocfuc30
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDMsImZpcnN0X25hbWUiOiJIYWRpIiwibGFzdF9uYW1lIjoiQWhtYWRpIiwiZW1haWwiOiJhaG1hZGloYWRpMzc0QGdtYWlsLmNvbSIsImlhdCI6MTYxNjk1NTczNCwiZXhwIjoxNjE2OTU3NTM0fQ.CBA7l4Qrp9nat7dApxt318spnh_mblpJDXQfSSSa37I
 
 
 ### test connection
@@ -26,8 +26,8 @@ first_name=test
 POST {{host}}/login
 Content-Type: {{contentType}}
 
-email=another@gmail.com
-&password=1234
+email=ahmadihadi374@gmail.com
+&password=123
 
 ###
 
