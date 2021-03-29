@@ -234,9 +234,9 @@ INSERT INTO users(first_name, last_name, email, password)
 SELECT * FROM users;
 
 -- edit user
-UPDATE FROM users WHERE id=1;
 
 -- delete user
+DELETE FROM users WHERE id=1;
 
 
 
